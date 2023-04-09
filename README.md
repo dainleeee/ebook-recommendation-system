@@ -33,7 +33,7 @@
 ### **1) 크롤링**
 - request, beautifulsoup 라이브러리를 이용하여 YES24의 eBook 종합 베스트셀러 도서 897권에 대한 10가지 정보 크롤링
 
-    <img src="./README_img/crawling.jpg" height="800px" width="1000x">
+    <img src="./README_img/crawling.jpg" height="800px" width="900x">
 
 
 ### **2) DB에 데이터 저장**
