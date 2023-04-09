@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>eBook 추천 결과</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<style>
+		.popover-body {
+			max-width: 400px;
+			font-size: 0.8rem;
+			line-height: 1.3rem;
+			text-align: justify;
+		}
+	</style>
+</head>
+<body>
+	<div class="jumbotron text-center">
+		<h4>검색 도서 : {{ request.form['link'] }}</h4><br>
+		<h1>eBook 추천 결과</h1><br>
+		<h6>도서 제목과 이미지를 클릭하면 구매사이트로 이동합니다.</h6>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			{% for index, row in ebooks.iterrows() %}
+			<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+				<div class="card mb-4">
+					<a href="{{ row['product_link'] }}" target="_blank">
+						<img class="card-img-top" src="{{ row['img_link'] }}" alt="{{ row['title'] }}" style="height: 300px; object-fit: contain;"
+							data-container="body" 
+							data-toggle="popover" 
+							data-placement="auto" 
+							data-content="{{ row['introduce'] }}">
+					</a>
+					<div class="card-body">
+						<h5 class="card-title text-center">
+							<a href="{{ row['product_link'] }}" target="_blank">{{ row['title'] }}</a>
+						</h5>
+						<div class="card-text text-center">
+							<p></p>
+							<p>{{ row['author'] }} / {{ row['publisher'] }}</p>
+							<p>{{ row['category1'] }} > {{ row['category2'] }}</p>
+							<p>{{ row['price'] }}원</p>
+							<p>[ {{ row['rate'] }} / 10.0 ]</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	
+	<script>
+		$(document).ready(function(){
+			$('[data-toggle="popover"]').popover({
+				trigger: 'hover',
+			});
+		});
+	</script>
+</body>
+</html>

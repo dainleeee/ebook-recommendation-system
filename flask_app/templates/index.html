@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ebook 추천 시스템</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="jumbotron text-center">
+		<h1>Ebook 추천 시스템</h1>
+	</div>
+	<div class="container">
+		<form action="/result" method="POST">
+			<div class="form-group">
+				<label for="bookname">도서명:</label>
+				<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="도서명을 입력하세요" name="link" list="book-list" />
+				<datalist id="book-list">
+				{% for book in title %}
+				  <option value="{{ book }}">
+				{% endfor %}
+				</datalist>
+			</div>
+			<button type="submit" class="btn btn-primary">검색</button>
+		</form>
+	</div>
+</body>
+</html>
