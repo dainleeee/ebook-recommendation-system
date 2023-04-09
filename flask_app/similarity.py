@@ -48,7 +48,7 @@ def remove_won(text):
 # 도서 제목을 입력받아 해당 도서와 유사한 도서 12개를 추천하는 함수
 def get_recommendations(title):
     ebook_df = load_data()
-    
+
     # rate 변수값 중 na값에 빈칸 채우기
     ebook_df['rate'] = ebook_df['rate'].fillna('평점 없음')
     # introduce 변수값 중 na값에 빈칸 채우기
@@ -60,17 +60,17 @@ def get_recommendations(title):
     # price변수의 한글 제거
     ebook_df['price'] = ebook_df['price'].apply(remove_won)
 
-    # tfidf를 이용한 벡터화화
+    # tfidf를 이용한 벡터화
     tfidf = TfidfVectorizer()
     tfidf_matrix = tfidf.fit_transform(ebook_df['soup_clean'])
 
     # 입력된 도서의 인덱스를 가져오기
     book_idx = ebook_df[ebook_df['title'] == title].index[0]
-    #코사인 유사도 계산
+    # 코사인 유사도 계산
     cosine_sim = cosine_similarity(tfidf_matrix[book_idx], tfidf_matrix)
     # 모든 도서에 대해 해당 도서와의 유사도 계산 후 리스트로 저장
     sim_scores = list(enumerate(cosine_sim[0]))
-    # 유사도에 따라 도서들을 정렬
+    # 유사도에 따라 도서들을 내림차순 정렬
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)[1:13]
     # 가장 유사한 도서 12개의 인덱스 가져오기
     book_indices = [i[0] for i in sim_scores]

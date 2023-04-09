@@ -17,6 +17,7 @@
 ------
 ## **📂사용 데이터**
 - YES24의 eBook 종합 베스트셀러 도서 897권에 대한 10가지 정보
+
     1. 도서명
     2. 저자명
     3. 출판사명
@@ -33,7 +34,7 @@
 ### **1) 크롤링**
 - request, beautifulsoup 라이브러리를 이용하여 YES24의 eBook 종합 베스트셀러 도서 897권에 대한 10가지 정보 크롤링
 
-    <img src="./README_img/crawling.jpg" height="800px" width="900x">
+    <img src="./README_img/crawling.jpg" height="800px" width="600x">
 
 
 ### **2) DB에 데이터 저장**
