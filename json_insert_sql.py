@@ -1,16 +1,14 @@
-import json
-
+import json, os
+import psycopg2
 # ebook 정보가 담긴 json파일 읽기
 with open('Section3-1/ebook_list.json','r') as file:
   data = json.load(file)
 data
 
-import psycopg2
-
-host = "jelani.db.elephantsql.com"
-user = "dbmjodhp"
-password = "ZBkJSjivgLQ9ffvcmUm_lZulOvyCmfO6"
-database = "dbmjodhp"
+host = os.environ.get('host')
+user = os.environ.get('user')
+password = os.environ.get('password')
+database = os.environ.get('database')
 
 connection = psycopg2.connect(
     host=host,

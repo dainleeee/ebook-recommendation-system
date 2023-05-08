@@ -3,13 +3,14 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
 import psycopg2
 import re
+import os
 
 # 데이터 불러오기
 def load_data():
-    host = "jelani.db.elephantsql.com"
-    user = "dbmjodhp"
-    password = "ZBkJSjivgLQ9ffvcmUm_lZulOvyCmfO6"
-    database = "dbmjodhp"
+    host = os.environ.get('host')
+    user = os.environ.get('user')
+    password = os.environ.get('password')
+    database = os.environ.get('database')
 
     connection = psycopg2.connect(
         host=host,
